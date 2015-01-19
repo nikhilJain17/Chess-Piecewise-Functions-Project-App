@@ -65,6 +65,86 @@ public class mainActivity extends Activity {
 
     }
 
+    // calculate piecewise outputs for king
+    public int king (int input) {
+
+        int output = 0;
+
+        if (input <= 4)
+            output = 3;
+
+        else if (input >= 5 && input <= 28)
+            output = 5;
+
+        else if (input >= 29 && input <= 64)
+            output = 8;
+
+        return output;
+    }
+
+    // calculate piecewise function for rook
+    public int rook (int input) {
+
+        return 14;
+    }
+
+    // calculate piecewise function for queen
+    public int queen (int input) {
+
+        int output = 0;
+
+        if (input <= 28)
+            output = 21;
+
+        else if (input >= 28 && input <= 48)
+            output = 23;
+
+        else if (input >= 49 && input <= 60)
+            output = 25;
+
+        else if (input >= 61 && input <= 64)
+            output = 27;
+
+        return output;
+    }
+
+    // calculate piecewise for knight
+    public int knight (int input) {
+
+        int output = 0;
+
+        if (input <= 4)
+            output = 2;
+
+        else if (input == 5 || input == 10 || input == 11|| input == 16|| input == 17|| input == 22|| input == 23|| input == 28|| input == 29|| input == 34|| input == 39|| input == 44)
+            output = 3;
+
+        else if ((input >= 6 && input <= 9) || (input >= 12 && input <= 15) || (input >= 18 && input <= 21) || (input >= 24 && input <= 27))
+            output = 4;
+
+        else if ((input >= 30 && input <= 33) || (input >= 35 && input <= 38) || (input >= 40 && input <= 43) || (input >= 45 && input <= 48))
+            output = 6;
+
+        else if (input >= 49 && input <= 64)
+            output = 8;
+
+        return output;
+
+        /*
+
+
+        4 if 6<=x<=9 OR 12<=x<=15 OR 18<=x<=21 OR 24<=x<=27
+
+        6 if 30<=x<=33 OR 35<=x<=38 OR 40<=x<=43 OR 45<=x<=48
+
+        8 if 49<=x<=64
+
+
+
+         */
+
+    }
+
     // calculate piecewise outputs for bishop
     public int bishop (int input) {
 
@@ -97,13 +177,18 @@ public class mainActivity extends Activity {
             // if the input is valid, continue. else, do nothing and wait for them to get their act together
             if (userInput > 0) {
 
-                int knightOutput = 0;
-                int kingOutput = 0;
-                int bishopOutput = 0;
+                int knightOutput;
+                int kingOutput;
+                int bishopOutput;
+                int rookOutput;
+                int queenOutput;
 
-                // pass the userinput to the knight piecewise function
+                // pass the userinput to the all the piecewise functions
                 bishopOutput = bishop(userInput);
-
+                knightOutput = knight(userInput);
+                queenOutput = queen(userInput);
+                rookOutput = rook(userInput);
+                kingOutput = king(userInput);
 
                 //Toast.makeText(mainActivity.this, Integer.toString(bishopOutput), Toast.LENGTH_SHORT).show();
 
@@ -111,6 +196,8 @@ public class mainActivity extends Activity {
                 outputs.putString("Bishop", Integer.toString(bishopOutput));
                 outputs.putString("Knight", Integer.toString(knightOutput));
                 outputs.putString("King", Integer.toString(kingOutput));
+                outputs.putString("Queen", Integer.toString(queenOutput));
+                outputs.putString("Rook", Integer.toString(rookOutput));
 
                 DialogFragment outputDialogFragment = new outputFragment();
                 outputDialogFragment.setArguments(outputs);

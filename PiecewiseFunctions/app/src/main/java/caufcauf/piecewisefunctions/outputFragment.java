@@ -21,7 +21,8 @@ public class outputFragment extends DialogFragment {
         String knight = getArguments().getString("Knight");
         String bishop = getArguments().getString("Bishop");
         String king = getArguments().getString("King");
-
+        String queen = getArguments().getString("Queen");
+        String rook = getArguments().getString("Rook");
 
 
         // object that allows us to build the dialog box
@@ -29,7 +30,7 @@ public class outputFragment extends DialogFragment {
 
         // customize look and feel of the dialog box
         builder.setTitle("Outputs");
-        builder.setMessage("King: " + king + "\nBishop: " + bishop + "\nKing: " + king);
+        builder.setMessage("King: " + king + "\nBishop: " + bishop + "\nKnight: " + knight + "\nRook: " + rook + "\nQueen: " + queen);
 
 
         return builder.create();
